@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -113,36 +114,24 @@
     `;
     document.head.appendChild(style);
   </script>
-</body>  
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <title>Ses Oynatıcı</title>
-</head>
-<body>
-  
-<audio id="backgroundMusic" autoplay loop preload="auto">
+
+  <!-- 🎵 Arka plan müziği: Eklenen tek bölüm -->
+  <audio id="bgMusic" autoplay loop>
     <source src="muzik.mp3" type="audio/mpeg">
-</audio>
+  </audio>
 
-<script>
-(function () {
-    const music = document.getElementById("backgroundMusic");
-    music.volume = 0.3;
+  <script>
+    const bgMusic = document.getElementById("bgMusic");
+    bgMusic.volume = 0.3;
 
-    music.play().catch(() => {
-        const startMusic = () => {
-            music.play().catch(() => {});
-            document.removeEventListener("click", startMusic);
-            document.removeEventListener("keydown", startMusic);
-            document.removeEventListener("touchstart", startMusic);
-        };
+    bgMusic.play().catch(() => {
+      const startMusic = () => {
+        bgMusic.play().catch(() => {});
+      };
 
-        document.addEventListener("click", startMusic);
-        document.addEventListener("keydown", startMusic);
-        document.addEventListener("touchstart", startMusic);
+      document.addEventListener("click", startMusic, { once: true });
+      document.addEventListener("touchstart", startMusic, { once: true });
     });
-})();
-</script>
+  </script>
+</body>
 </html>
